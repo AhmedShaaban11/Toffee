@@ -1,28 +1,22 @@
+<<<<<<<< HEAD:src/db/DbExe.java
+package db;
+========
+package org.toffee.controller;
+>>>>>>>> develop:src/main/java/org/toffee/controller/DbExe.java
+
 import java.sql.*;
 import java.util.Vector;
 
-/**
- * Class to execute SQL queries
- */
 public class DbExe {
-  /** Connection to the database
-   */
   private Connection conn;
-
-  /** Constructor
-   */
   public DbExe() {
     this.conn = null;
   }
 
-  /** Connects to the database
-   */
   private void connect() throws SQLException {
-    conn = DriverManager.getConnection("jdbc:sqlite:src/data.db");
+    conn = DriverManager.getConnection("jdbc:sqlite:db/data.db");
   }
 
-  /** Disconnects from the database
-   */
   private void disconnect() throws SQLException {
     conn.close();
   }
@@ -76,13 +70,12 @@ public class DbExe {
 
   public static void main(String[] args) {
     DbExe db = new DbExe();
-    Vector<Vector<String>> vec = db.dmlExe("SELECT name, email FROM Admin where id = 3;");
+    Vector<Vector<String>> vec = db.dmlExe("SELECT * FROM Customer;");
     for (Vector<String> row : vec) {
       for (String col : row) {
         System.out.print(col + " ");
       }
       System.out.println();
     }
-    System.out.println(vec.get(0).get(1));
   }
 }
